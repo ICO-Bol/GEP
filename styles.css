@@ -1,0 +1,58 @@
+/* ============================================================
+   Estilos del GEOVISOR DE INVERSIONES PRODUCTIVAS
+   - Paleta minimalista verde/azules para la interfaz
+   - Layout con sidebar (capas/leyenda/info) y mapa principal
+   - Alto contraste en la leyenda (borde negro en las muestras)
+   ============================================================ */
+
+/* Paleta base */
+:root {
+  --bg: #0b1220;        /* azul profundo de fondo */
+  --panel: #0f1a2b;     /* azul panel lateral/encabezado */
+  --text: #e5f4ff;      /* texto claro */
+  --accent: #22c55e;    /* verde acento (título) */
+  --accent-2: #38bdf8;  /* azul acento (subtítulo) */
+  --muted: #9ca3af;     /* gris suave para info */
+  --border: #1f2937;    /* borde sutil */
+}
+
+/* Reset y tipografía */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; background: linear-gradient(180deg, #09101b, var(--bg)); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial; }
+
+/* Encabezado y pie */
+.app-header, .app-footer { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--border); }
+.app-footer { border-top: 1px solid var(--border); border-bottom: none; }
+.titles h1 { margin: 0; font-size: 24px; font-weight: 700; color: var(--accent); }
+.subtitle { margin: 2px 0 0; color: var(--accent-2); font-size: 16px; }
+
+/* Toolbar (filtros y acciones) */
+.toolbar { display: flex; gap: 8px; align-items: center; }
+.toolbar select, .toolbar input, .toolbar button { padding: 6px 10px; border: 1px solid var(--border); background: #132036; color: var(--text); border-radius: 6px; }
+.toolbar button:hover { border-color: var(--accent); }
+
+/* Layout principal: sidebar + mapa */
+main { display: grid; grid-template-columns: 300px 1fr; height: calc(100vh - 100px); }
+.sidebar { background: var(--panel); border-right: 1px solid var(--border); padding: 12px; overflow-y: auto; }
+#map { width: 100%; height: 100%; }
+
+/* Lista de capas (sidebar) */
+#layerList { display: grid; gap: 8px; margin-top: 8px; }
+.layer-item { display: flex; align-items: center; justify-content: space-between; background: #0f1a2b; border: 1px solid var(--border); border-radius: 6px; padding: 8px; }
+.layer-item label { display: flex; align-items: center; gap: 8px; }
+.layer-item .tools { display: flex; gap: 6px; }
+
+/* Leyenda (color + nombre de capa) */
+#legend { display: grid; gap: 6px; margin-top: 8px; }
+.legend-item { display: flex; align-items: center; gap: 8px; }
+.legend-swatch { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #000; /* borde negro para alto contraste */ }
+
+/* Panel de información contextual */
+#infoBox { margin-top: 8px; padding: 8px; border: 1px dashed var(--border); border-radius: 6px; color: var(--muted); }
+
+/* Responsivo: sidebar abajo en pantallas pequeñas */
+@media (max-width: 900px) {
+  main { grid-template-columns: 1fr; }
+  .sidebar { height: 280px; order: 2; }
+  #map { height: calc(100vh - 380px); }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GEOVISOR DE INVERSIONES PRODUCTIVAS Y AMBIENTALES</title>
+
+  <!-- Leaflet CSS: estilos del mapa y controles básicos -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Leaflet.draw CSS: herramientas de dibujo/medición -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+
+  <!-- Estilos propios del geovisor (paleta verde/azules, layout minimalista) -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Encabezado: título y subtítulo del proyecto -->
+  <header class="app-header">
+    <div class="titles">
+      <h1>GEOVISOR DE INVERSIONES PRODUCTIVAS Y AMBIENTALES</h1>
+      <p class="subtitle">Proyecto "Gestion Ecosocial Participativa de la provincia M. M. Caballero"</p>
+    </div>
+
+    <!-- Barra de herramientas: filtros, acciones de usuario -->
+    <div class="toolbar">
+      <!-- Selector de atributo específico para filtrar -->
+      <select id="filterField" title="Atributo a filtrar">
+        <option value="Beneficiar" selected>Beneficiario</option>
+        <option value="Comunidad">Comunidad</option>
+        <option value="Municipio">Municipio</option>
+      </select>
+
+      <!-- Texto de búsqueda para el filtro -->
+      <input id="filterText" type="text" placeholder="Texto a buscar..." title="Filtra por el atributo seleccionado">
+
+      <!-- Botones de filtro -->
+      <button id="applyFilterBtn" title="Aplicar filtro">Filtrar</button>
+      <button id="clearFilterBtn" title="Limpiar filtro">Limpiar</button>
+
+      <!-- Botón para activar modo 'añadir marcador' -->
+      <button id="addMarkerBtn" title="Añadir marcador">Añadir marcador</button>
+
+      <!-- Botón para limpiar dibujos/mediciones y marcadores sueltos -->
+      <button id="clearUserDataBtn" title="Limpiar mediciones/marcadores">Limpiar</button>
+    </div>
+  </header>
+
+  <!-- Cuerpo principal: panel lateral + mapa -->
+  <main>
+    <!-- Panel lateral: control de capas, leyenda e información contextual -->
+    <aside class="sidebar">
+      <section>
+        <h2>Capas</h2>
+        <div id="layerList"></div>
+      </section>
+
+      <section>
+        <h2>Leyenda</h2>
+        <div id="legend"></div>
+      </section>
+
+      <section>
+        <h2>Información</h2>
+        <div id="infoBox">Haz clic en elementos para ver detalles.</div>
+      </section>
+    </aside>
+
+    <!-- Contenedor del mapa Leaflet -->
+    <div id="map"></div>
+  </main>
+
+  <!-- Pie de página simple -->
+  <footer class="app-footer">
+    <small>Instituto de Capacitación del Oriente, Vallegrande 2026</small>
+  </footer>
+
+  <!-- Librerías JS: Leaflet y Leaflet.draw -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+
+  <!-- Carga automática de capas desde carpeta Data
+       Cada archivo define una variable global con su GeoJSON:
+       riegoGeoJSON, repanaGeoJSON, reforestacionGeoJSON, frutalGeoJSON,
+       canapasGeoJSON, apisGeoJSON, gallineroGeoJSON -->
+  <script src="Data/riego.js"></script>
+  <script src="Data/repana.js"></script>
+  <script src="Data/reforestacion.js"></script>
+  <script src="Data/frutal.js"></script>
+  <script src="Data/canapas.js"></script>
+  <script src="Data/apis.js"></script>
+  <script src="Data/gallinero.js"></script>
+  <script src="Data/huertos.js"></script>
+
+  <!-- Lógica del geovisor -->
+  <script src="app.js"></script>
+  
+</body>
+</html>
